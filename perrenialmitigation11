@@ -1,0 +1,11 @@
+function approve(address spender, UFixed18 amount) external returns (bool) {
+    // Set a maximum approval limit
+    UFixed18 maxApprovalLimit = UFixed18(1000); // Set your desired maximum approval limit here
+
+    // Check if the approval amount exceeds the maximum limit
+    require(amount <= maxApprovalLimit, "Approval amount exceeds the maximum limit");
+
+    allowance[msg.sender][spender] = amount;
+    emit Approval(msg.sender, spender, amount);
+    return true;
+}
